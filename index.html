@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Rebajas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container">
+    <header class="app-header">
+      <h1>Calculadora de Rebajas</h1>
+      <p class="subtitle">Optimización de porcentajes de descuento por cuota objetivo</p>
+    </header>
+
+    <div class="grid-layout">
+
+      <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+      <section class="card form-card">
+
+        <!-- DATOS GENERALES -->
+        <fieldset class="field-group">
+          <legend>Datos generales</legend>
+
+          <div class="input-row">
+            <label for="numProductos">Cantidad de productos:</label>
+            <select id="numProductos">
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+            </select>
+          </div>
+
+          <div class="input-row">
+            <label for="cuotas">Cantidad de cuotas:</label>
+            <input type="text" id="cuotas" placeholder="Ej: 12" />
+          </div>
+
+          <div class="input-row">
+            <label for="cuotaObjetivo">Valor cuota objetivo:</label>
+            <input type="text" id="cuotaObjetivo" class="input-moneda" placeholder="Ej: $ 150.000" />
+          </div>
+
+          <div class="input-row">
+            <label for="tolerancia">Tolerancia:</label>
+            <input type="text" id="tolerancia" class="input-moneda" value="$ 0" />
+          </div>
+
+          <div class="input-row">
+            <label>Paso de rebaja:</label>
+            <span class="badge">1% (fijo)</span>
+          </div>
+        </fieldset>
+
+        <!-- PRODUCTOS -->
+        <fieldset class="field-group">
+          <legend>Productos</legend>
+
+          <!-- PRODUCTO 1 -->
+          <div class="product-block" id="block-p1">
+            <h4>Producto 1</h4>
+            <div class="input-row">
+              <label for="c1">Capital:</label>
+              <input type="text" id="c1" class="input-moneda" placeholder="Ej: $ 500.000" />
+            </div>
+            <div class="input-row">
+              <label for="r1">Rebaja máxima:</label>
+              <input type="text" id="r1" class="input-porcentaje" placeholder="Ej: 30 %" />
+            </div>
+          </div>
+
+          <!-- PRODUCTO 2 -->
+          <div class="product-block" id="block-p2">
+            <h4>Producto 2</h4>
+            <div class="input-row">
+              <label for="c2">Capital:</label>
+              <input type="text" id="c2" class="input-moneda" placeholder="Ej: $ 800.000" />
+            </div>
+            <div class="input-row">
+              <label for="r2">Rebaja máxima:</label>
+              <input type="text" id="r2" class="input-porcentaje" placeholder="Ej: 40 %" />
+            </div>
+          </div>
+
+          <!-- PRODUCTO 3 -->
+          <div class="product-block" id="block-p3">
+            <h4>Producto 3</h4>
+            <div class="input-row">
+              <label for="c3">Capital:</label>
+              <input type="text" id="c3" class="input-moneda" placeholder="Ej: $ 300.000" />
+            </div>
+            <div class="input-row">
+              <label for="r3">Rebaja máxima:</label>
+              <input type="text" id="r3" class="input-porcentaje" placeholder="Ej: 20 %" />
+            </div>
+          </div>
+
+        </fieldset>
+
+        <!-- ALERTA DE ERROR EN PANTALLA -->
+        <div id="errorBox" class="alert-box error hidden"></div>
+
+        <button type="button" id="btnCalcular" class="btn-primary">CALCULAR</button>
+
+      </section>
+
+      <!-- COLUMNA DERECHA: RESULTADOS -->
+      <section class="card result-card">
+        <h2>Resultado</h2>
+
+        <div id="placeholderResult" class="placeholder-text">
+          Ingresa los datos generales y de los productos, luego presiona <strong>CALCULAR</strong> para ver los resultados.
+        </div>
+
+        <div id="resultContent" class="hidden">
+          
+          <!-- ESTADO / BANNER -->
+          <div id="statusBanner" class="status-banner"></div>
+
+          <!-- REBAJAS CALCULADAS -->
+          <div class="section-block">
+            <h3>REBAJAS RECOMENDADAS</h3>
+            <div class="rebajas-grid" id="rebajasDisplay"></div>
+          </div>
+
+          <!-- COMPROBACIÓN FINANCIERA -->
+          <div class="section-block">
+            <h3>COMPROBACIÓN</h3>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td>Cuotas</td>
+                  <td id="resCuotas" class="text-right"></td>
+                </tr>
+                <tr>
+                  <td>Cuota objetivo</td>
+                  <td id="resCuotaObj" class="text-right font-mono"></td>
+                </tr>
+                <tr>
+                  <td>Cuota obtenida</td>
+                  <td id="resCuotaObt" class="text-right font-mono highlight"></td>
+                </tr>
+                <tr>
+                  <td>Diferencia de cuota</td>
+                  <td id="resDifCuota" class="text-right font-mono"></td>
+                </tr>
+                <tr class="table-divider">
+                  <td>S objetivo (Monto total)</td>
+                  <td id="resSObj" class="text-right font-mono"></td>
+                </tr>
+                <tr>
+                  <td>S obtenido (Monto total)</td>
+                  <td id="resSObt" class="text-right font-mono"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
